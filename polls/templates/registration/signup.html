@@ -1,6 +1,4 @@
-{% block title %}
-    Create User - {{ block.super }}
-{% endblock %}
+
 
 {% block content %}
 
@@ -14,7 +12,7 @@
             </ul>
         {% endif %}
 
-        <h1>Create account - The Great Django Blog</h1>
+        <h1>Create account</h1>
 
          <form method="post" >
              {% csrf_token %}
@@ -27,5 +25,7 @@
              </table>
          </form>
      </div>
+
+     <p>Already a member?<a href="{% url 'login' %}">Login here!</a></p>
 
 {% endblock %}

@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.contrib.auth.views import login
 
 # Create your views here.
-from .models import Choice, Question
+from .models import Choice, Question, Vote
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -41,6 +41,8 @@ def vote(request, question_id):
                         'error_message': "You didn't select a choice."})
 
     else:
+        vote = Vote(choice=selected_choice.id, user=request.user.id)
+        vote.save()
         selected_choice.votes += 1
         selected_choice.save()
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
